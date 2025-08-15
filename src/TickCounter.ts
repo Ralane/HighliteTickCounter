@@ -1,5 +1,5 @@
-import {Plugin, SettingsTypes} from "@highlite/plugin-api";
-import { PanelManager, UIManager, UIManagerScope } from "@highlite/plugin-api";
+import {Plugin, SettingsTypes} from "@highlite/core";
+import { PanelManager, UIManager, UIManagerScope } from "@highlite/core";
 
 
 import Click1 from "../resources/sounds/click_001.mp3";
@@ -51,6 +51,8 @@ export default class TickCounter extends Plugin {
             text: "Metronome Every X Ticks",
             type: SettingsTypes.range,
             value: 1,
+            min: 1,
+            max: 99999,
             callback: () => {}
         },
 
@@ -58,13 +60,17 @@ export default class TickCounter extends Plugin {
             text: "Metronome Volume",
             type: SettingsTypes.range,
             value: 100,
+            min: 0,
+            max: 100,
             callback: () => {}
         },
 
         this.settings.metronomeSoundPreset = {
             text: "Metronome Sound Preset",
             type: SettingsTypes.range,
-            value: 1,
+            value: 0,
+            min: 0,
+            max: this.allSounds.length,
             callback: () => {}
         }
 
